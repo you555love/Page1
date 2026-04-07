@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS DOM</title>
+</head>
+<body>
+
+    <div id="MyHello">Hello</div>
+    <input id="firstname" name="first" value="ทดสอบจ้า">
+    
+    <div>
+        <h1> สิ่งที่สนใจ </h1>
+        <div id = "NewContent">
+            <!-- สิ่งที่สนใจ -->
+        </div>
+    </div>
+    
+    <div> 
+        <input type="checkbox" name="interest" value="หนังสือ"> หนังสือ
+        <input type="checkbox" name="interest" value="เกม"> เกม
+        <input type="checkbox" name="interest" value="กีฬา"> กีฬา
+    </div>
+
+    <div>
+        <button onclick="sumitInterest()"> ส่งสิ่งที่สนใจ</button>
+    </div>
+
+    <div>
+        <button onclick="buttonclick()"> คลิก</button>
+    </div>
+    
+    <div>
+        <button id="submitBtn" onclick="submitData()">ส่งข้อมูล</button>
+    </div>
+
+    <div onmouseover="overitem()">
+        ลากเมาส์ผ่านข้อความนี้เพื่อเลือก
+    </div>
+
+    <div id="holaMyName"> Hola <span style="display: none; "> My Name </span> </div>
+
+    <div id ="Mycontent">HTML New</div>
+
+
+    <script>
+    // ----------------------------------------------------------------------------------
+        console.log('Hola');
+
+        let firstnameDOM = document.getElementById('firstname');
+        console.log(firstnameDOM.value);
+        console.log(document.getElementById('firstname').value);
+        console.log(document.querySelector('#firstname').value);
+        console.log(document.querySelector('input[name="first"]').value);
+
+        let hobby=document.querySelectorAll('input[name="interest"]');
+        
+        console.log(hobby.length);
+    
+        for(let i=0; i < hobby.length; i++){
+            console.log(hobby[i].value);
+        }
+        
+        function buttonclick(){
+            console.log('คลิกแล้วจ้า');
+        };
+
+        const btn= document.getElementById('submitBtn');
+        btn.addEventListener('click', submitData);
+        function submitData(){
+            console.log('ส่งข้อมูลแล้วจ้า');
+        }; 
+        
+        function overitem(){
+            console.log('ลากเมาส์ผ่านแล้วจ้า');
+        };
+
+        const MyName = document.getElementById('holaMyName');
+        console.log(MyName);
+        console.log(MyName.textContent);
+        console.log(MyName.innerHTML);
+        console.log(MyName.innerText);
+
+        let myHTML = '<ul>';
+            myHTML += '<li>' + firstnameDOM.value + '</li>';
+            myHTML += '</ul>';
+
+        console.log(document.getElementById('Mycontent').innerHTML= myHTML);
+        
+        let setCSS = document.getElementById('MyHello');
+        setCSS.style.backgroundColor = 'skyblue';
+        setCSS.style.color = 'purple';
+        setCSS.style.fontSize = '30px';
+        setCSS.style.textAlign = 'center';
+        setCSS.style.padding = '20px';
+        setCSS.style.marginBottom = '20px';
+        setCSS.style.borderRadius = '10px';
+
+    function sumitInterest(){
+    let interestDOM = document.querySelectorAll('input[name=interest]');
+    let contentHTML = '<ul>' ;
+    for(let i=0; i < interestDOM.length; i++){
+        if(interestDOM[i].checked){
+            console.log(interestDOM[i].value);
+            contentHTML += '<li>' + interestDOM[i].value + '</li>';
+        }
+    }
+    contentHTML += '</ul>' ;
+    let contentDOM = document.getElementById('NewContent'); 
+    
+    contentDOM.innerHTML = contentHTML; 
+    }
+
+    // ----------------------------------------------------------------------------------   
+    </script>
+</body>
+</html>
